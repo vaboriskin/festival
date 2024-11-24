@@ -1,0 +1,215 @@
+body {
+        font-family: Arial, sans-serif;
+        background-color: dee2e6;
+        margin: 0;
+        padding: 0;
+        }
+
+
+/* Основные стили для шапки */
+header {
+    background-color: #6c757d;
+    padding: 15px 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Позволяет перенос элементов на новую строку */
+}
+
+.navbar-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    align-items: center;
+    justify-content: center; /* Центрирует элементы по горизонтали */
+}
+
+.navbar-menu li {
+    display: inline-block;
+}
+
+
+
+.navbar-menu a {
+    font-size: 18px;
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    transition: color 0.3s ease;
+}
+
+.navbar-menu a:hover {
+    color: #212529;
+}
+
+/* Адаптивные стили для мобильных устройств */
+@media (max-width: 768px) {
+    .navbar-menu {
+        flex-direction: column; /* Переводит меню в вертикальный вид */
+        gap: 10px;
+    }
+    .navbar-menu a {
+        font-size: 16px; /* Уменьшает размер шрифта на мобильных */
+        padding: 8px 12px;
+    }
+}
+
+.table-container {
+    display: flex;
+    height: 100vh;
+}
+
+
+
+
+/* Таблица с рейтингом */
+
+
+/* Общие стили для таблиц */
+/* Основная таблица */
+.main-table-container {
+    flex: 2;
+    padding: 0;
+    overflow-y: auto;
+    background-color: #212529;
+}
+
+/* Стили для таблицы */
+.main-table-container table {
+    width: 100%;
+    border-collapse: separate; /* Разделение границ строк */
+    border-spacing: 0 10px; /* Отступ между строками */
+}
+
+/* Заголовки таблицы (для основной таблицы) */
+.main-table-container th {
+    font-family: Arial, sans-serif;
+    background-color: #212529;
+    color: #e9ecef;
+    text-align: center;
+    padding: 15px;
+    font-size: 22px;
+}
+
+/* Ячейки таблицы (для основной таблицы) */
+.main-table-container td {
+    text-align: center;
+    padding: 15px;
+    font-size: 35px;
+    color: #FFFFFF;
+}
+
+/* Чередование цветов строк для основной таблицы */
+.main-table-container tbody tr:nth-child(odd) {
+    background-color: #212529;
+    border-radius: 20px; /* Закругляем углы строк */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Тень для отделения строк */
+}
+
+.main-table-container tbody tr:nth-child(even) {
+    background-color: #343a40;
+    border-radius: 20px; /* Закругляем углы строк */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Тень для отделения строк */
+}
+
+/* Подсветка строки при наведении для основной таблицы */
+.main-table-container tbody tr:hover {
+    background-color: #333660;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Увеличиваем тень при наведении */
+}
+
+
+
+/* Отдельные стили для таблицы с рейтингом */
+.ranking-table-container {
+    flex: 1;
+    padding: 0;
+    background-color: #495057;
+    border-left: 2px solid #333;
+    display: flex;
+    flex-direction: column; /* Размещаем заголовок и таблицу вертикально */
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+}
+
+.ranking-table-header {
+    width: 100%; /* Ширина заголовка - вся доступная ширина */
+    text-align: center;
+    padding: 15px 0; /* Отступы сверху и снизу */
+    background-color: #495057; /* Цвет фона для заголовка */
+}
+
+.ranking-table-header h2 {
+    font-size: 28px;
+    color: white; /* Цвет текста заголовка (золотой) */
+    margin: 0; /* Убираем отступы вокруг заголовка */
+}
+
+.ranking-table {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+}
+
+.ranking-table tr {
+    height: 50px;
+    border-bottom: 1px solid #333;
+}
+
+.ranking-table td {
+    font-size: 24px;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 8px;
+    border: none;
+}
+
+.ranking-table .rank {
+    font-size: 23px;
+    color: #A0A0A0;
+    width: 15%;
+}
+
+.ranking-table .participant-number {
+    font-size: 22px;
+    font-weight: bold;
+    width: 50%;
+}
+
+.ranking-table .total-score {
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+    width: 35%;
+}
+
+.ranking-table tr:nth-child(odd) {
+    background-color: #212529;
+}
+
+.ranking-table tr:nth-child(even) {
+    background-color: #343a40;
+}
+
+.ranking-table tr:hover {
+    background-color: #333660;
+}
+.vote-progress {
+    display: block;
+    font-size: 12px;
+    color: #bbbbbb;
+    margin-top: 5px;
+}
+/* Добавляем эффект размытия */
+.blurred {
+    filter: blur(8px); /* Эффект размытия */
+    pointer-events: none; /* Запрещаем взаимодействие (например, выделение текста) */
+    opacity: 0.7; /* Добавляем полупрозрачность */
+}

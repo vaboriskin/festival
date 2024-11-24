@@ -1,0 +1,197 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Таблица оценок участника</title>
+    <link rel="stylesheet" href="{% static 'table/css/table.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.6.0/css/all.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            background-color: #dee2e6;
+            color: white;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <ul class="navbar-menu">
+            <li><a href="{% url 'main' %}"><i class="fa-solid fa-house"></i> Главная</a></li>
+            <li><a href="{% url 'vote_page' %}"><i class="fa-solid fa-check"></i> Голосовать</a></li>
+            <li><a href="{% url 'participant_scores' %}"><i class="fa-solid fa-table"></i> Таблица</a></li>
+            <li><a href="{% url 'signup' %}"><i class="fa-solid fa-right-from-bracket"></i> Выйти</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="table-container">
+    <!-- Основная таблица -->
+    <div class="main-table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Жюри</th>
+                    <th>Участник</th>
+                    <th>Техника</th>
+                    <th>Композиция</th>
+                    <th>Креативность</th>
+                    <th>Впечатление</th>
+                    <th>Сумма баллов</th>
+                </tr>
+            </thead>
+            <tbody id="scoresBody">
+                {% for participant, scores in all_scores.items %}
+                    {% for score in scores.scores %}
+                        <tr>
+                            <td>{{ score.jury }}</td>
+                            <td>#{{ participant.number }}: {{ participant.name }}</td>
+                            <td>{{ score.technique }}</td>
+                            <td>{{ score.composition }}</td>
+                            <td>{{ score.creativity }}</td>
+                            <td>{{ score.impression }}</td>
+                            <td>{{ score.score_sum }}</td>
+                        </tr>
+                    {% endfor %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Таблица с рейтингом -->
+    <div class="ranking-table-container">
+        <!-- Заголовок для таблицы -->
+        <div class="ranking-table-header">
+            <h2 class="ranking-title">Общий рейтинг</h2>
+        </div>
+        <table class="ranking-table">
+            <tbody id="rankingBody">
+                {% for participant in ranked_participants %}
+                    <tr
+                        {% if participant.rank <= 3 %}
+                            class="blurred"
+                        {% endif %}
+                    >
+                        <td class="rank">{{ participant.rank }}</td> <!-- Место -->
+                        <td class="participant-number">#{{ participant.participant_number }} {{ participant.participant_name }}</td> <!-- Участник -->
+                        <td class="total-score">
+                            {{ participant.total_score }}
+                            <span class="vote-progress">({{ participant.vote_progress }})</span> <!-- Прогресс голосов -->
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+   setInterval(function() {
+    $.ajax({
+        url: "{% url 'get_all_scores' %}",  // URL для запроса
+        type: "GET",  // Тип запроса (GET)
+        success: function(data) {
+            console.log("Полученные данные:", data); // Логируем полученные данные
+
+            const scoresBody = $('#scoresBody');  // Контейнер для основной таблицы
+            const rankingBody = $('#rankingBody');  // Контейнер для рейтинга
+
+            // Очистка старых данных
+            scoresBody.empty();
+            rankingBody.empty();
+
+            if (data.length > 0) {
+                let rankedParticipants = [];
+                let allParticipantsVoted = true; // Считаем, что все проголосовали
+
+                // Обрабатываем каждую запись
+                data.forEach(function(score) {
+                    const voteProgress = score.vote_progress || "0/3";  // Прогресс голосования
+                    const fullyVoted = score.vote_progress === "3/3";  // Если участник набрал 3 голоса
+
+                    // Логируем, что мы обрабатываем
+                    console.log(`Обрабатываем участника: ${score.participant_name}, голосов: ${score.vote_progress}`);
+
+                    // Добавление данных в основную таблицу
+                    scoresBody.append(`
+                        <tr>
+                            <td>${score.jury}</td>
+                            <td>#${score.participant_number}: ${score.participant_name}</td>
+                            <td>${score.technique}</td>
+                            <td>${score.composition}</td>
+                            <td>${score.creativity}</td>
+                            <td>${score.impression}</td>
+                            <td>${score.score_sum || 0}</td> <!-- Прогнозируем баллы -->
+                        </tr>
+                    `);
+
+                    // Добавление участника в рейтинг
+                    let participant = rankedParticipants.find(p => p.participant_number === score.participant_number);
+                    if (!participant) {
+                        participant = {
+                            rank: rankedParticipants.length + 1,
+                            participant_number: score.participant_number,
+                            participant_name: score.participant_name,
+                            total_score: 0,
+                            vote_progress: voteProgress,
+                            fully_voted: fullyVoted
+                        };
+                        rankedParticipants.push(participant);
+                    }
+
+                    // Добавляем баллы участника
+                    participant.total_score += score.score_sum || 0;
+
+                    // Проверяем, проголосовал ли этот участник
+                    if (!fullyVoted) {
+                        allParticipantsVoted = false;  // Если хотя бы один не проголосовал, ставим флаг в false
+                    }
+                });
+
+                // Сортируем участников по баллам
+                rankedParticipants.sort((a, b) => b.total_score - a.total_score);
+
+                // Обновляем таблицу рейтинга
+                rankedParticipants.forEach(function(participant, index) {
+                    const isTop3 = index < 3;  // Для первых 3 мест
+                    const rowStyle = isTop3 && !allParticipantsVoted ? 'class="blurred"' : '';  // Применяем блюр, если не все проголосовали
+
+                    // Добавляем строки в таблицу рейтинга
+                    rankingBody.append(`
+                        <tr ${rowStyle}>
+                            <td>${index + 1}</td>
+                            <td>#${participant.participant_number}: ${participant.participant_name}</td>
+                            <td>
+                                ${participant.total_score}
+                                <span class="vote-progress">(${participant.vote_progress})</span>
+                            </td>
+                        </tr>
+                    `);
+                });
+            } else {
+                // Если нет данных, добавляем сообщения
+                scoresBody.append('<tr><td colspan="7">Нет данных для участников.</td></tr>');
+                rankingBody.append('<tr><td colspan="3">Нет данных для рейтинга.</td></tr>');
+            }
+
+        },
+        error: function(xhr, status, error) {
+            console.error("Ошибка при запросе данных:", error);  // Логируем ошибку, если она есть
+        }
+    });
+}, 1000);  // Обновление данных каждую секунду
+
+
+
+
+
+</script>
+
+</body>
+</html>
