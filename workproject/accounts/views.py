@@ -2,7 +2,23 @@
 from django.shortcuts import render, redirect
 from .forms import CustomUserCreationForm, CustomLoginForm
 from django.contrib.auth import login
+from django.conf import settings
 
+
+def password_page(request):
+    # Проверка на авторизованного пользователя
+    if request.user.is_authenticated:
+        return redirect('login')  # Если уже авторизован, перенаправляем на страницу логина
+
+    if request.method == 'POST':
+        entered_password = request.POST.get('password')
+
+        if entered_password == settings.SECURE_PASSWORD:  # Проверка пароля
+            return redirect('login')  # Если пароль правильный — редирект на страницу логина
+        else:
+            return render(request, 'password_page.html', {'error': 'Неверный пароль.'})
+
+    return render(request, 'password_page.html')
 
 def signup_view(request):
     if request.method == 'POST':

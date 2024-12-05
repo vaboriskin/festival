@@ -1,0 +1,269 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-12-04 22:37+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\Table\templates\table\table.html:8
+msgid "Таблица оценок участника"
+msgstr "Participant's Score Table"
+
+#: .\Table\templates\table\table.html:41 .\main\templates\main\layout.html:18
+#: .\translation\templates\translation\translation.html:67
+#: .\vote\templates\vote\edit_score.html:17 .\vote\templates\vote\vote.html:26
+msgid "Главная"
+msgstr "Home"
+
+#: .\Table\templates\table\table.html:42 .\main\templates\main\layout.html:19
+#: .\translation\templates\translation\translation.html:68
+#: .\vote\templates\vote\edit_score.html:18 .\vote\templates\vote\vote.html:27
+msgid "Голосовать"
+msgstr "Vote"
+
+#: .\Table\templates\table\table.html:43 .\main\templates\main\layout.html:20
+#: .\translation\templates\translation\translation.html:69
+#: .\vote\templates\vote\edit_score.html:19 .\vote\templates\vote\vote.html:28
+msgid "Таблица"
+msgstr "Table"
+
+#: .\Table\templates\table\table.html:44 .\main\templates\main\layout.html:21
+#: .\translation\templates\translation\translation.html:8
+#: .\translation\templates\translation\translation.html:70
+#: .\vote\templates\vote\edit_score.html:20 .\vote\templates\vote\vote.html:29
+msgid "Трансляция"
+msgstr "Broadcast"
+
+#: .\Table\templates\table\table.html:45 .\main\templates\main\layout.html:22
+#: .\translation\templates\translation\translation.html:71
+#: .\vote\templates\vote\edit_score.html:21 .\vote\templates\vote\vote.html:30
+msgid "Выйти"
+msgstr "Logout"
+
+#: .\Table\templates\table\table.html:47
+#: .\accounts\templates\accounts\login.html:75
+msgid "Войти"
+msgstr "Login"
+
+#: .\Table\templates\table\table.html:68
+msgid "Общий рейтинг"
+msgstr "Overall rating"
+
+#: .\Table\templates\table\table.html:80
+msgid "Показать"
+msgstr "Show"
+
+#: .\Table\templates\table\table.html:94
+msgid "Жюри"
+msgstr "Jury"
+
+#: .\Table\templates\table\table.html:95
+msgid "Участник"
+msgstr "Participant"
+
+#: .\Table\templates\table\table.html:96
+msgid "Техника"
+msgstr "Technique"
+
+#: .\Table\templates\table\table.html:97
+msgid "Композиция"
+msgstr "Composition"
+
+#: .\Table\templates\table\table.html:98
+msgid "Креативность"
+msgstr "Creativity"
+
+#: .\Table\templates\table\table.html:99
+msgid "Впечатление"
+msgstr "Impression"
+
+#: .\Table\templates\table\table.html:100
+msgid "Итог"
+msgstr "Total"
+
+#: .\accounts\templates\accounts\login.html:8
+msgid "Вход"
+msgstr "Enter"
+
+#: .\accounts\templates\accounts\login.html:57
+msgid "Вход в систему"
+msgstr "System Login"
+
+#: .\accounts\templates\accounts\login.html:62
+msgid "Имя пользователя:"
+msgstr "Username:"
+
+#: .\accounts\templates\accounts\login.html:69
+msgid "Пароль:"
+msgstr "Password:"
+
+#: .\accounts\templates\accounts\login.html:77
+msgid "У вас нет аккаунта?"
+msgstr "Don't have an account?"
+
+#: .\accounts\templates\accounts\login.html:77
+msgid "Зарегистрируйтесь здесь"
+msgstr "Register here"
+
+#: .\accounts\templates\password_page.html:8
+msgid "Введите пароль"
+msgstr "Enter password"
+
+#: .\accounts\templates\password_page.html:119
+msgid "Введите пароль для доступа:"
+msgstr "Enter password for access:"
+
+#: .\accounts\templates\password_page.html:123
+msgid "Пароль для жюри:"
+msgstr "Password for jury:"
+
+#: .\accounts\templates\password_page.html:134
+msgid "Посмотреть таблицу"
+msgstr "View table"
+
+#: .\main\templates\main\main.html:10
+msgid "Добавить участников"
+msgstr "Add participants"
+
+#: .\main\templates\main\participant_confirm_delete.html:3
+msgid "Удалить участника"
+msgstr "Delete participant"
+
+#: .\main\templates\main\participant_confirm_delete.html:7
+msgid "Вы действительно хотите удалить участника"
+msgstr "Are you sure you want to delete this participant?"
+
+#: .\main\templates\main\participant_confirm_delete.html:10
+#: .\main\templates\main\participant_list.html:36
+msgid "Удалить"
+msgstr "Delete"
+
+#: .\main\templates\main\participant_confirm_delete.html:12
+msgid "Отмена"
+msgstr "Cancel"
+
+#: .\main\templates\main\participant_form.html:3
+#: .\main\templates\main\participant_form.html:7
+msgid "Редактировать участника"
+msgstr "Edit participant"
+
+#: .\main\templates\main\participant_form.html:3
+#: .\main\templates\main\participant_form.html:7
+msgid "Добавить участника"
+msgstr "Add participant"
+
+#: .\main\templates\main\participant_form.html:11
+msgid "Сохранить"
+msgstr "Save"
+
+#: .\main\templates\main\participant_form.html:11
+msgid "Добавить"
+msgstr "Add"
+
+#: .\main\templates\main\participant_form.html:13
+msgid "Назад к списку"
+msgstr "Back to list"
+
+#: .\main\templates\main\participant_list.html:3
+msgid "Участники"
+msgstr "Participants"
+
+#: .\main\templates\main\participant_list.html:14
+#, fuzzy
+#| msgid "Добавить участников"
+msgid "Список участников"
+msgstr "Add participants"
+
+#: .\main\templates\main\participant_list.html:16
+msgid "Добавить нового участника"
+msgstr "Add new participant"
+
+#: .\main\templates\main\participant_list.html:19
+msgid "Удалить всех участников"
+msgstr "Delete all participants"
+
+#: .\main\templates\main\participant_list.html:24
+msgid "#Номер"
+msgstr "#Number"
+
+#: .\main\templates\main\participant_list.html:25
+msgid "Название"
+msgstr "Name"
+
+#: .\main\templates\main\participant_list.html:26
+msgid "Действия"
+msgstr "Actions"
+
+#: .\main\templates\main\participant_list.html:35
+msgid "Редактировать"
+msgstr "Edit"
+
+#: .\vote\templates\vote\edit_score.html:8
+#: .\vote\templates\vote\edit_score.html:36
+msgid "Редактирование оценки"
+msgstr "Edit score"
+
+#: .\vote\templates\vote\edit_score.html:41
+msgid "Сохранить изменения"
+msgstr "Save changes"
+
+#: .\vote\templates\vote\vote.html:8 .\vote\templates\vote\vote.html:45
+msgid "Голосование"
+msgstr "Voting"
+
+#: .\vote\templates\vote\vote.html:58 .\vote\templates\vote\vote.html:90
+msgid "Участник:"
+msgstr "Participant:"
+
+#: .\vote\templates\vote\vote.html:63
+msgid "Техника:"
+msgstr "Technique:"
+
+#: .\vote\templates\vote\vote.html:68
+msgid "Композиция:"
+msgstr "Composition:"
+
+#: .\vote\templates\vote\vote.html:73
+msgid "Креативность:"
+msgstr "Creativity:"
+
+#: .\vote\templates\vote\vote.html:78
+msgid "Впечатление:"
+msgstr "Impression:"
+
+#: .\vote\templates\vote\vote.html:82
+msgid "Сохранить оценки"
+msgstr "Save scores"
+
+#: .\vote\templates\vote\vote.html:86
+msgid "Ваши оценки:"
+msgstr "Your scores:"
+
+#: .\vote\templates\vote\vote.html:90
+msgid "Оценка:"
+msgstr "Score:"
+
+#: .\vote\templates\vote\vote.html:91
+msgid "Редактировать оценку"
+msgstr "Edit score"
+
+#: .\vote\templates\vote\vote.html:92
+msgid "Удалить оценку"
+msgstr "Delete score"
+
+#: .\vote\templates\vote\vote.html:96
+msgid "Оценок нет."
+msgstr "No scores."

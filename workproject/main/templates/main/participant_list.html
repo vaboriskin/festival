@@ -1,6 +1,6 @@
 {% extends 'main/layout.html' %}
-
-{% block title %} Участники {% endblock %}
+{% load i18n %}
+{% block title %} {% trans "Участники" %} {% endblock %}
 
 
 
@@ -11,19 +11,19 @@
         }
     </script>
  <div class="container">
-        <h2>Список участников</h2>
+        <h2>{% trans "Список участников" %}</h2>
 
-        <a href="{% url 'participant_create' %}" class="add-participant">Добавить нового участника</a>
+        <a href="{% url 'participant_create' %}" class="add-participant">{% trans "Добавить нового участника" %}</a>
         <form method="post" action="{% url 'delete_all_participants' %}" style="display: inline;" onsubmit="return confirmDelete();">
             {% csrf_token %}
-            <button type="submit" class="btn btn-danger">Удалить всех участников</button>
+            <button type="submit" class="btn btn-danger">{% trans "Удалить всех участников" %}</button>
         </form>
         <table>
             <thead>
                 <tr>
-                    <th>#Номер</th>
-                    <th>Название</th>
-                    <th>Действия</th>
+                    <th>{% trans "#Номер" %}</th>
+                    <th>{% trans "Название" %}</th>
+                    <th>{% trans "Действия" %}</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,8 +32,8 @@
                     <td>#{{ participant.number }}</td>
                     <td>{{ participant.name }}</td>
                     <td>
-                        <a href="{% url 'participant_edit' participant.pk %}">Редактировать</a> |
-                        <a href="{% url 'participant_delete' participant.pk %}">Удалить</a>
+                        <a href="{% url 'participant_edit' participant.pk %}">{% trans "Редактировать" %}</a> |
+                        <a href="{% url 'participant_delete' participant.pk %}">{% trans "Удалить" %}</a>
                     </td>
                 </tr>
                 {% endfor %}

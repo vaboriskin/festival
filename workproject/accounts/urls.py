@@ -1,8 +1,8 @@
 # accounts/urls.py
 from django.urls import path
-from .views import signup_view, login_view  # Импортируем представления
-
+from . import views
 urlpatterns = [
-    path('signup/', signup_view, name='signup'),  # URL для регистрации
-    path('login/', login_view, name='login'),      # URL для входа
+    path('password/', views.password_page, name='password_page'),
+    path('signup/', views.signup_view, name='signup'),  # URL для регистрации
+    path('login/', views.login_view, name='login'),      # URL для входа
 ]

@@ -1,0 +1,170 @@
+body {
+        font-family: Arial, sans-serif;
+        background-color: #adb5bd;
+        margin: 0;
+        padding: 0;
+        }
+
+
+/* Основные стили для шапки */
+header {
+    background-color: #6c757d;
+    padding: 15px 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Позволяет перенос элементов на новую строку */
+}
+
+.navbar-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    align-items: center;
+    justify-content: center; /* Центрирует элементы по горизонтали */
+}
+
+.navbar-menu li {
+    display: inline-block;
+}
+
+
+
+.navbar-menu a {
+    font-size: 18px;
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    transition: color 0.3s ease;
+}
+
+.navbar-menu a:hover {
+    color: #212529;
+}
+
+/* Основные стили для мобильных устройств */
+@media (max-width: 768px) {
+    .navbar-menu {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr); /* Размещаем 5 кнопок в ряд */
+        grid-gap: 1px; /* Минимальный промежуток между кнопками */
+        justify-items: center;
+        align-items: center;
+        padding: 1px; /* Уменьшаем общий внутренний отступ */
+    }
+
+    .navbar-menu li {
+        list-style: none;
+    }
+
+    .navbar-menu a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 10px; /* Уменьшаем шрифт */
+        padding: 2px; /* Уменьшаем внутренний отступ */
+        background-color: #343a40;
+        color: white;
+        border-radius: 3px; /* Немного округляем углы */
+        text-decoration: none;
+        width: 60px; /* Уменьшаем ширину кнопки */
+        height: 60px; /* Уменьшаем высоту кнопки */
+    }
+
+    .navbar-menu a i {
+        font-size: 10px; /* Ещё сильнее уменьшаем иконки */
+        margin-bottom: 3px; /* Отступ между иконкой и текстом */
+    }
+
+    .navbar-menu a:hover {
+        background-color: #ced4da;
+    }
+}
+
+/* Main Table Container */
+.main-table-container {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+/* Styling for the table itself */
+.main-table-container table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 15px; /* Space between columns */
+}
+
+/* Styling for the table headers */
+.main-table-container th {
+    font-family: Arial, sans-serif;
+    background-color: #212529;
+    color: #e9ecef;
+    text-align: center;
+    padding: 15px;
+    font-size: 22px;
+}
+
+/* Styling for table cells */
+.main-table-container td {
+    text-align: center;
+    padding: 15px;
+    font-size: 35px;
+    color: #FFFFFF;
+}
+
+/* Styling for individual score boxes */
+.score-box {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+}
+
+.score-box span {
+    display: inline-block;
+    width: 60px; /* Increased width for larger digits */
+    height: 60px; /* Increased height for larger digits */
+    border: 2px solid #e9ecef;
+    border-radius: 5px;
+    line-height: 60px; /* Centers the number vertically */
+    text-align: center;
+    font-size: 30px; /* Increased font size for bigger numbers */
+    background-color: #212529;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Styling for alternating row colors */
+.main-table-container tbody tr:nth-child(odd) {
+    background-color: #212529;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.main-table-container tbody tr:nth-child(even) {
+    background-color: #343a40;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-table-container {
+        width: 100%;
+    }
+
+    .main-table-container th {
+        font-size: 12px;
+    }
+}

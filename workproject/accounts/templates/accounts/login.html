@@ -1,34 +1,91 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Вход</title>
+    <title>{% trans "Вход" %}</title>
     <link rel="stylesheet" href="{% static 'accounts/css/login.css' %}">
+<style>
+    .language-form {
+        display: inline-flex;
+        align-items: center;
+        padding: 5px;
+        background-color: #f0f0f0;
+        border-radius: 20px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .language-select {
+        padding: 5px;
+        margin-right: 5px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background-color: #fff;
+        font-size: 14px;
+        color: #333;
+    }
+
+    .language-btn {
+        background-color: #007bff;
+        border: none;
+        padding: 6px 10px;
+        border-radius: 50%;
+        cursor: pointer;
+        color: white;
+        font-size: 14px;
+        transition: background-color 0.3s ease;
+    }
+
+    .language-btn:hover {
+        background-color: #0056b3;
+    }
+
+    .language-btn:focus {
+        outline: none;
+    }
+
+    .fa-check {
+        font-size: 16px;
+    }
+</style>
 </head>
 <body>
+
     <div class="container">
-        <h2>Вход в систему</h2>
+        <h2>{% trans "Вход в систему" %}</h2>
+
         <form method="post" id="login-form">
             {% csrf_token %}
             <div class="form-group">
-                <label for="{{ form.username.id_for_label }}">Имя пользователя:</label>
+                <label for="{{ form.username.id_for_label }}">{% trans "Имя пользователя:" %}</label>
                 {{ form.username }}  <!-- Поле для имени пользователя -->
                 {% if form.username.errors %}
                     <div class="error">{{ form.username.errors }}</div>
                 {% endif %}
             </div>
             <div class="form-group">
-                <label for="{{ form.password.id_for_label }}">Пароль:</label>
+                <label for="{{ form.password.id_for_label }}">{% trans "Пароль:" %}</label>
                 {{ form.password }}  <!-- Поле для пароля -->
                 {% if form.password.errors %}
                     <div class="error">{{ form.password.errors }}</div>
                 {% endif %}
             </div>
-            <button type="submit" class="submit-btn">Войти</button>
+            <button type="submit" class="submit-btn">{% trans "Войти" %}</button>
         </form>
-        <p>У вас нет аккаунта? <a href="{% url 'signup' %}">Зарегистрируйтесь здесь</a></p>
+        <p>{% trans "У вас нет аккаунта?" %}<a href="{% url 'signup' %}">{% trans "Зарегистрируйтесь здесь" %}</a></p>
+        <form method="post" action="{% url 'set_language' %}?next={{ request.path }}" class="language-form">
+    {% csrf_token %}
+    <select name="language" class="language-select">
+        <option value="ru" {% if LANGUAGE_CODE == 'ru' %}selected{% endif %}>RU</option>
+        <option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>EN</option>
+    </select>
+    <button type="submit" class="language-btn">
+        <i class="fa fa-check"></i>
+    </button>
+</form>
     </div>
+
 </body>
 </html>

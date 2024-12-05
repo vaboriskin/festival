@@ -1,6 +1,6 @@
 from pathlib import Path
+import os
 
-from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -17,10 +17,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+SECURE_PASSWORD = 'tattoofest123'
 # Application definition
 
 INSTALLED_APPS = [
+    'translation',
     'Table',
     'vote',
     'main',
@@ -34,6 +35,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -65,14 +67,22 @@ WSGI_APPLICATION = 'workproject.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
+# https:pip//docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',  # Используем MySQL
+        'NAME': 'festdb',
+        'USER': 'root',  # Имя пользователя MySQL
+        'PASSWORD': '3363636t',  # Пароль пользователя MySQL
+        'HOST': '127.0.0.1',  # Хост базы данных (обычно localhost)
+        'PORT': '3306',  # Порт MySQL (по умолчанию 3306)
+        'OPTIONS': {
+            'sql_mode': 'STRICT_TRANS_TABLES',  # Режим строгой проверки MySQL
+        }
     }
 }
+
 
 
 # Password validation
@@ -96,8 +106,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
-
-LANGUAGE_CODE = 'ru-ru'
+LANGUAGES = [
+    ('ru', 'Russian'),
+    ('en', 'English'),
+]
+LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'Europe/Moscow'
 
@@ -106,6 +119,9 @@ USE_I18N = True
 USE_TZ = True
 
 
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale'),
+]
 
 
 STATIC_URL = 'static/'
@@ -117,7 +133,7 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = reverse_lazy('home')  # Страница, куда будут перенаправлены после входа
+LOGIN_URL = '/Table/'
+LOGIN_REDIRECT_URL = '/Table/'  # Страница, куда будут перенаправлены после входа
 
 CSRF_TRUSTED_ORIGINS = ['http://localhost:8000', 'http://127.0.0.1:8000']

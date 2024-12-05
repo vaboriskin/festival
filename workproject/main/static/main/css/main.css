@@ -44,7 +44,47 @@ body {
 .nav li a:hover {
     color: #212529;
 }
+.language-form {
+        display: inline-flex;
+        align-items: center;
+        padding: 5px;
+        background-color: #f0f0f0;
+        border-radius: 20px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
 
+    .language-select {
+        padding: 5px;
+        margin-right: 5px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background-color: #fff;
+        font-size: 14px;
+        color: #333;
+    }
+
+    .language-btn {
+        background-color: #007bff;
+        border: none;
+        padding: 6px 10px;
+        border-radius: 50%;
+        cursor: pointer;
+        color: white;
+        font-size: 14px;
+        transition: background-color 0.3s ease;
+    }
+
+    .language-btn:hover {
+        background-color: #0056b3;
+    }
+
+    .language-btn:focus {
+        outline: none;
+    }
+
+    .fa-check {
+        font-size: 16px;
+    }
 /* Бургер */
 .burger {
     display: none;

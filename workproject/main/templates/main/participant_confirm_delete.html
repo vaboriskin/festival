@@ -1,14 +1,14 @@
 {% extends 'main/layout.html' %}
-
-{% block title %} Удалить участника {% endblock %}
+{% load i18n %}
+{% block title %} {% trans "Удалить участника" %} {% endblock %}
 
 {% block content %}
 <div class="participant-delete-container">
-    <h2>Вы действительно хотите удалить участника "{{ participant.name }}"?</h2>
+    <h2>{% trans "Вы действительно хотите удалить участника" %} "{{ participant.name }}"?</h2>
     <form method="post">
         {% csrf_token %}
-        <button type="submit" class="delete-button">Удалить</button>
+        <button type="submit" class="delete-button">{% trans "Удалить" %}</button>
     </form>
-    <a href="{% url 'participant_list' %}" class="cancel-link">Отмена</a>
+    <a href="{% url 'participant_list' %}" class="cancel-link">{% trans "Отмена" %}</a>
 </div>
 {% endblock %}

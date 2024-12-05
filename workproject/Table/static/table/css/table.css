@@ -1,6 +1,6 @@
 body {
         font-family: Arial, sans-serif;
-        background-color: dee2e6;
+        background-color: #adb5bd;
         margin: 0;
         padding: 0;
         }
@@ -48,17 +48,51 @@ header {
     color: #212529;
 }
 
-/* Адаптивные стили для мобильных устройств */
+/* Основные стили для мобильных устройств */
 @media (max-width: 768px) {
     .navbar-menu {
-        flex-direction: column; /* Переводит меню в вертикальный вид */
-        gap: 10px;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr); /* Размещаем 5 кнопок в ряд */
+        grid-gap: 1px; /* Минимальный промежуток между кнопками */
+        justify-items: center;
+        align-items: center;
+        padding: 1px; /* Уменьшаем общий внутренний отступ */
     }
+
+    .navbar-menu li {
+        list-style: none;
+    }
+
     .navbar-menu a {
-        font-size: 16px; /* Уменьшает размер шрифта на мобильных */
-        padding: 8px 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 10px; /* Уменьшаем шрифт */
+        padding: 2px; /* Уменьшаем внутренний отступ */
+        background-color: #343a40;
+        color: white;
+        border-radius: 3px; /* Немного округляем углы */
+        text-decoration: none;
+        width: 60px; /* Уменьшаем ширину кнопки */
+        height: 60px; /* Уменьшаем высоту кнопки */
+    }
+
+    .navbar-menu a i {
+        font-size: 10px; /* Ещё сильнее уменьшаем иконки */
+        margin-bottom: 3px; /* Отступ между иконкой и текстом */
+    }
+
+    .navbar-menu a:hover {
+        background-color: #ced4da;
     }
 }
+
+
+
+
+
 
 .table-container {
     display: flex;
@@ -74,7 +108,7 @@ header {
 /* Общие стили для таблиц */
 /* Основная таблица */
 .main-table-container {
-    flex: 2;
+    flex: 4;
     padding: 0;
     overflow-y: auto;
     background-color: #212529;
@@ -208,8 +242,108 @@ header {
     margin-top: 5px;
 }
 /* Добавляем эффект размытия */
-.blurred {
-    filter: blur(8px); /* Эффект размытия */
-    pointer-events: none; /* Запрещаем взаимодействие (например, выделение текста) */
-    opacity: 0.7; /* Добавляем полупрозрачность */
+
+.reveal-btn {
+        display: inline-block;
+        padding: 5px 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 12px;
+        transition: background-color 0.3s ease;
+    }
+
+    .reveal-btn:hover {
+        background-color: #0056b3;
+    }
+.blurred .reveal-btn {
+    pointer-events: auto; /* Восстанавливает кликабельность кнопки */
 }
+    .reveal-btn:active {
+        background-color: #003f7f;
+    }
+
+    .blurred {
+        filter: blur(5px);
+        pointer-events: none; /* Чтобы нельзя было взаимодействовать с заблюренным элементом */
+    }
+
+
+@media (max-width: 768px) {
+    /* Сделаем таблицу с рейтингом сверху и с фиксированной высотой */
+    .ranking-table-container {
+        width: 100%;  /* Таблица с рейтингом будет занимать всю ширину */
+        max-height: 300px; /* Фиксированная высота */
+        overflow-y: auto; /* Вертикальная прокрутка */
+        margin-bottom: 20px; /* Отступ между таблицами */
+    }
+
+    .main-table-container {
+        width: 100%; /* Таблица с оценками также занимает всю ширину */
+    }
+
+    /* Чтобы элементы располагались в одну колонку */
+    .table-container {
+        flex-direction: column;  /* Размещение таблиц по вертикали */
+    }
+
+    .ranking-table-header h2 {
+        font-size: 14px;  /* Меньший размер шрифта для заголовка */
+        text-align: center;  /* Центрируем заголовок */
+    }
+
+    /* Размеры шрифта для мобильных устройств */
+    .ranking-table td, .main-table-container th, .main-table-container td {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    /* Немного уменьшить шрифт заголовков в основной таблице */
+    .main-table-container th {
+        font-size: 8px;
+    }
+}
+
+.language-form {
+        display: inline-flex;
+        align-items: center;
+        padding: 5px;
+        background-color: #f0f0f0;
+        border-radius: 20px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .language-select {
+        padding: 5px;
+        margin-right: 5px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background-color: #fff;
+        font-size: 14px;
+        color: #333;
+    }
+
+    .language-btn {
+        background-color: #007bff;
+        border: none;
+        padding: 6px 10px;
+        border-radius: 50%;
+        cursor: pointer;
+        color: white;
+        font-size: 14px;
+        transition: background-color 0.3s ease;
+    }
+
+    .language-btn:hover {
+        background-color: #0056b3;
+    }
+
+    .language-btn:focus {
+        outline: none;
+    }
+
+    .fa-check {
+        font-size: 16px;
+    }

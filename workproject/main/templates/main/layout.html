@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!doctype html>
 <html lang="ru">
 <head>
@@ -14,11 +15,21 @@
 <header class="header">
     <nav class="nav">
         <ul>
-            <li><a href="{% url 'main' %}"><i class="fa-solid fa-house"></i> Главная</a></li>
-            <li><a href="{% url 'vote_page' %}"><i class="fa-solid fa-check"></i> Голосовать</a></li>
-            <li><a href="{% url 'participant_scores' %}"><i class="fa-solid fa-table"></i> Таблица</a></li>
-
-            <li><a href="{% url 'signup' %}"><i class="fa-solid fa-right-from-bracket"></i> Выйти</a></li>
+            <li><a href="{% url 'main' %}"><i class="fa-solid fa-house"></i>{% trans "Главная" %}</a></li>
+            <li><a href="{% url 'vote_page' %}"><i class="fa-solid fa-check"></i>{% trans "Голосовать" %}</a></li>
+            <li><a href="{% url 'participant_scores' %}"><i class="fa-solid fa-table"></i>{% trans "Таблица" %}</a></li>
+            <li><a href="{% url 'translation_scores' %}"><i class="fa-solid fa-video"></i>{% trans "Трансляция" %}</a></li>
+            <li><a href="{% url 'signup' %}"><i class="fa-solid fa-right-from-bracket"></i>{% trans "Выйти" %}</a></li>
+            <form method="post" action="{% url 'set_language' %}?next={{ request.path }}" class="language-form">
+    {% csrf_token %}
+    <select name="language" class="language-select">
+        <option value="ru" {% if LANGUAGE_CODE == 'ru' %}selected{% endif %}>RU</option>
+        <option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>EN</option>
+    </select>
+    <button type="submit" class="language-btn">
+        <i class="fa fa-check"></i>
+    </button>
+</form>
         </ul>
     </nav>
     <div class="burger">
